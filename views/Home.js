@@ -4,7 +4,7 @@ import { Button } from 'react-native';
 
 export default class Home extends React.Component {
     static navigationOptions = {
-      title: 'Welcome',
+      title: 'Home',
     };
     render() {
       const {navigate} = this.props.navigation;
