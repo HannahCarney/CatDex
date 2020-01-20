@@ -1,16 +1,14 @@
 import React from 'react';
-import { Button, View } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { addCat } from '../redux/actions/CatActions';
-import FormItem from '../components/FormItem';
-import { Form, Control } from 'react-redux-form/native';
+
 import FormView from '../components/FormView';
 
 class AddCats extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { input: "" };
   }
   static navigationOptions = {
     title: 'Home',
@@ -19,14 +17,6 @@ class AddCats extends React.Component {
   addCat = (values) => {
     console.log("values are " + values.name);
     this.props.addCat(values);
-    this.setState({ input: "" });
-  };
-  
-  submit = values => {
-    console.log('submitting form', values)
-}
-  updateInput = (input) => {
-    this.setState({ input });
   };
 
   render() {
@@ -37,7 +27,6 @@ class AddCats extends React.Component {
     );
   }
 }
-
 
 const mapDispatchToProps = { addCat }
 

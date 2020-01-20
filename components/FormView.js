@@ -1,5 +1,6 @@
 import React from 'react'
-import { Field, Form, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
+import FormItem from './FormItem'
 import {
     StyleSheet,
     Text,
@@ -8,10 +9,6 @@ import {
     View
 } from 'react-native'
 
-const renderInput = ({ input: { onChange, ...restInput } }) => {
-    return <TextInput style={styles.input} onChangeText={onChange} {...restInput} />
-}
-
 class FormView extends React.Component {
 
     constructor(props) {
@@ -19,19 +16,18 @@ class FormView extends React.Component {
         this.state = { error: false };
     }
 
-     submit = values => {
-        console.log('submitting form', values)
-    }
-
     render() {
         const { handleSubmit, onSubmitCallback } = this.props
 
+        //Refactor using a Form element?
         return (
             <View >
-                <Text>Name:</Text>
-                <Field name="name" component={renderInput} />
-                <Text>Breed:</Text>
-                <Field name="breed" component={renderInput} />
+                <Field
+                    name='name'
+                    component={FormItem} />
+                 <Field
+                    name='breed'
+                    component={FormItem} />
                 <TouchableOpacity onPress={handleSubmit(onSubmitCallback)}>
                     <Text style={styles.button}>Submit</Text>
                 </TouchableOpacity>
@@ -41,7 +37,7 @@ class FormView extends React.Component {
 }
 
 export default reduxForm({
-    form: 'test'
+    form: 'catForm' //add a name to redux form to fetch data later if needed
 })(FormView)
 
 const styles = StyleSheet.create({

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Field } from 'redux-form'
+import { View } from 'react-native'
 
 
 export default class FormItem extends React.Component {
@@ -20,20 +22,24 @@ export default class FormItem extends React.Component {
     };
 
     render() {
+        const {
+            input: { value, onChange, name, label }
+          } = this.props
         return (
-            <Input
-                {...this.props}
-             
-                errorStyle={{ color: 'red' }}
-                onChangeText={value => this.checkIsValid(value)}
-                errorMessage={this.state.error ? `Enter a Valid ${this.props.label}`: ""}
-            />
+            <View>
+                <Input
+                    {...this.props}
+                    label={name.toUpperCase()}
+                    placeholder={`Enter cat ${name}`}
+                    errorStyle={{ color: 'red' }}
+                    onChangeText={v => onChange(v)} 
+                    errorMessage={this.state.error ? `Enter a Valid ${label}` : ""}
+                />
+            </View>
+
         )
     }
 }
 
-//   leftIcon={
-//     <Icon
-//     {...this.props}
-//     color='black'
-// />}
+
+
