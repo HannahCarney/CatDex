@@ -1,18 +1,19 @@
 import React from 'react';
 import { Button } from 'react-native';
 
-
-export default class AddCats extends React.Component {
+ class AddCats extends React.Component {
     static navigationOptions = {
-      title: 'Welcome',
+      title: 'Home',
     };
     render() {
       const {navigate} = this.props.navigation;
       return (
         <Button
-          title="Cats"
-          onPress={() => navigate('Profile', {name: 'Jane'})}
+          title="Add Cat"
+          onPress={() => navigate('AddCats')}
         />
       );
     }
   }
+
+  export default AddCats
