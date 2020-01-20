@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, TextInput } from 'react-native';
+import { Button, View, TextInput, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { addCat } from '../redux/actions/CatActions';
 
