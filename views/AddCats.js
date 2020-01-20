@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from 'react-native';
+
 
 export default class AddCats extends React.Component {
     static navigationOptions = {

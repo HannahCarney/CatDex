@@ -10,8 +10,8 @@ export default class Home extends React.Component {
       const {navigate} = this.props.navigation;
       return (
         <Button
-          title="Go to"
-          onPress={() => navigate('Cats')}
+          title="Go to Cats"
+          onPress={() => navigate('AddCats')}
         />
       );
     }
