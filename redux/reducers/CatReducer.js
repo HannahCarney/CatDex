@@ -4,9 +4,6 @@ import { combineReducers } from 'redux';
 import { ADD_CAT } from '../types';
 import { createForms } from 'react-redux-form'
 
-const initialCatState = {};
-
-
 const INITIAL_STATE = {
   current: [
     { 'name': 'Goose' },

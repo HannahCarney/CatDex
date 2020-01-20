@@ -1,96 +1,65 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React from 'react'
+import { Field, Form, reduxForm } from 'redux-form'
+import {
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from 'react-native'
 
-const SimpleForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props;
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>First Name</label>
-        <div>
-          <Field
-            name="firstName"
-            component="input"
-            type="text"
-            placeholder="First Name"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Last Name</label>
-        <div>
-          <Field
-            name="lastName"
-            component="input"
-            type="text"
-            placeholder="Last Name"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Email</label>
-        <div>
-          <Field
-            name="email"
-            component="input"
-            type="email"
-            placeholder="Email"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Sex</label>
-        <div>
-          <label>
-            <Field name="sex" component="input" type="radio" value="male" />
-            {' '}
-            Male
-          </label>
-          <label>
-            <Field name="sex" component="input" type="radio" value="female" />
-            {' '}
-            Female
-          </label>
-        </div>
-      </div>
-      <div>
-        <label>Favorite Color</label>
-        <div>
-          <Field name="favoriteColor" component="select">
-            <option />
-            <option value="ff0000">Red</option>
-            <option value="00ff00">Green</option>
-            <option value="0000ff">Blue</option>
-          </Field>
-        </div>
-      </div>
-      <div>
-        <label htmlFor="employed">Employed</label>
-        <div>
-          <Field
-            name="employed"
-            id="employed"
-            component="input"
-            type="checkbox"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Notes</label>
-        <div>
-          <Field name="notes" component="textarea" />
-        </div>
-      </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
-      </div>
-    </form>
-  );
-};
+const renderInput = ({ input: { onChange, ...restInput } }) => {
+    return <TextInput style={styles.input} onChangeText={onChange} {...restInput} />
+}
+
+class FormView extends React.Component {
+
+    constructor(props) {
+        super(props);
+        console.log(this.props.hannah.toString())
+        this.state = { error: false };
+    }
+
+     submit = values => {
+        console.log('submitting form', values)
+    }
+
+    render() {
+        const { handleSubmit } = this.props
+
+        return (
+            <View >
+                <Text>Name:</Text>
+                <Field name="name" component={renderInput} />
+                <TouchableOpacity onPress={handleSubmit(this.props.hannah)}>
+                    <Text style={styles.button}>Submit</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+}
 
 export default reduxForm({
-  form: 'catForm', // a unique identifier for this form
-})(SimpleForm);
+    form: 'test'
+})(FormView)
+
+const styles = StyleSheet.create({
+    button: {
+        backgroundColor: 'blue',
+        color: 'white',
+        height: 30,
+        lineHeight: 30,
+        marginTop: 10,
+        textAlign: 'center',
+        width: 250
+    },
+    container: {
+
+    },
+    input: {
+        borderColor: 'black',
+        borderWidth: 1,
+        height: 37,
+        width: 250
+    }
+})
