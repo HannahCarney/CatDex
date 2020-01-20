@@ -16,7 +16,6 @@ class FormView extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props.hannah.toString())
         this.state = { error: false };
     }
 
@@ -25,13 +24,15 @@ class FormView extends React.Component {
     }
 
     render() {
-        const { handleSubmit } = this.props
+        const { handleSubmit, onSubmitCallback } = this.props
 
         return (
             <View >
                 <Text>Name:</Text>
                 <Field name="name" component={renderInput} />
-                <TouchableOpacity onPress={handleSubmit(this.props.hannah)}>
+                <Text>Breed:</Text>
+                <Field name="breed" component={renderInput} />
+                <TouchableOpacity onPress={handleSubmit(onSubmitCallback)}>
                     <Text style={styles.button}>Submit</Text>
                 </TouchableOpacity>
             </View>

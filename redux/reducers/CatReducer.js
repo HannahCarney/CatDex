@@ -1,15 +1,18 @@
 
 
-import { combineReducers } from 'redux';
 import { ADD_CAT } from '../types';
-import { createForms } from 'react-redux-form'
 
+// put this in a MOCKDB
 const INITIAL_STATE = {
   current: [
-    { 'name': 'Goose' },
-    { 'name': 'Grumpy Cat' },
-    { 'name': 'Crookshanks' },
-    { 'name': 'Mr. Bigglesworth' }
+    { 'name': 'Goose',
+      'breed': 'Flerken' },
+    { 'name': 'Grumpy Cat',
+      'breed': 'Ragdoll' },
+    { 'name': 'Crookshanks',
+     'breed': 'Himalayan' },
+    { 'name': 'Mr. Bigglesworth',
+     'breed':  'Sphynx'}
   ]
 };
 
@@ -20,7 +23,7 @@ const catReducer = (state = INITIAL_STATE, action) => {
         current
       } = state;
       const { id, content } = action.payload;
-      current.push({ 'name' : content})
+      current.push(content);
       const newState = { current };
       return newState;
     default:

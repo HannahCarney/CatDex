@@ -18,7 +18,7 @@ class AddCats extends React.Component {
 
   addCat = (values) => {
     console.log("values are " + values.name);
-    this.props.addCat(values.name);
+    this.props.addCat(values);
     this.setState({ input: "" });
   };
   
@@ -32,7 +32,7 @@ class AddCats extends React.Component {
   render() {
     return (
       <View>
-        <FormView hannah={ values => this.addCat(values)}></FormView>
+        <FormView onSubmitCallback={ values => this.addCat(values)}></FormView>
       </View>
     );
   }

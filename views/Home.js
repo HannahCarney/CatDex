@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, View, Text, FlatList, StyleSheet, SafeAreaView } from 'react-native';
 
-function Item({ title, index }) {
+function Item({ values, index }) {
   return (
     <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{values.name}</Text>
+      <Text style={styles.title}>{values.breed}</Text>
     </View>
   );
 }
@@ -23,7 +24,7 @@ class Home extends React.Component {
           
       <FlatList
         data={this.props.cats.current}
-        renderItem={({ item, index }) => <Item index={index} title={item.name} />}
+        renderItem={({ item, index }) => <Item index={index} values={item} />}
         keyExtractor={(item, index) => {
           return index.toString();
         }}
