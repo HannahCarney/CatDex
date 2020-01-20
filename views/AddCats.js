@@ -31,22 +31,22 @@ import { addCat } from '../redux/actions/CatActions';
           onChangeText={text => this.updateInput(text)}
           value={this.state.input}
           editable
+          minLength={1}
           maxLength={40}
         />
         <Button
           title="Add Cat"
-          onPress={() => this.addCat}
+          onPress={() => this.addCat()}
         />
        </View>
       );
     }
   }
 
-  const mapStateToProps = state => ({ current: state.current })
 
   const mapDispatchToProps = { addCat }
 
   export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
   )(AddCats)
