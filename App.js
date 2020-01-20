@@ -1,11 +1,18 @@
 import React from 'react';
 import AppNavigator from './AppNavigator';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import catReducer from './redux/reducers/CatReducer';
 
+import { reducer as reduxFormReducer } from 'redux-form';
+
+const reducer = combineReducers({
+  form: reduxFormReducer,
+  cats: catReducer 
+});
+
 const store = createStore(
-  catReducer
+  reducer
 );
 
 export default class App extends React.Component {
