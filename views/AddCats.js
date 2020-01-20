@@ -1,19 +1,52 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button, View, TextInput } from 'react-native';
+import { connect } from 'react-redux';
+import { addCat } from '../redux/actions/CatActions';
+
 
  class AddCats extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { input: "" };
+  }
     static navigationOptions = {
       title: 'Home',
     };
+   
+    addCat = () => {
+      this.props.addCat(this.state.input);
+      this.setState({ input: "" });
+    };
+
+    updateInput = input => {
+      this.setState({ input });
+    };
+
     render() {
-      const {navigate} = this.props.navigation;
-      return (
+        return (
+       <View>
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          onChangeText={text => this.updateInput(text)}
+          value={this.state.input}
+          editable
+          maxLength={40}
+        />
         <Button
           title="Add Cat"
-          onPress={() => navigate('AddCats')}
+          onPress={() => this.addCat}
         />
+       </View>
       );
     }
   }
 
-  export default AddCats
+  const mapStateToProps = state => ({ current: state.current })
+
+  const mapDispatchToProps = { addCat }
+
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AddCats)
