@@ -1,16 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, View, Text, FlatList, StyleSheet, SafeAreaView } from 'react-native';
-import { Icon } from 'native-base';
+import { Button, FlatList, StyleSheet, SafeAreaView } from 'react-native';
 import CatListItem from '../components/CatListItem'
-
-//move into component
+import { deleteCat } from '../redux/actions/CatActions'
 
 
 class Home extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   static navigationOptions = {
     title: 'Home',
   };
+
+  deleteCat = (id) => {
+    this.props.deleteCat(id);
+  };
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -19,7 +27,7 @@ class Home extends React.Component {
 
         <FlatList
           data={this.props.cats.current}
-          renderItem={({ item, index }) => <CatListItem index={index} values={item}></CatListItem>}
+          renderItem={({ item, index }) => <CatListItem index={index} values={item} delete={id => this.deleteCat(id)}></CatListItem>}
           keyExtractor={(item, index) => {
             return index.toString();
           }}
@@ -46,5 +54,6 @@ const mapStateToProps = (state) => {
   return { cats }
 };
 
+const mapDispatchToProps = { deleteCat }
 
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

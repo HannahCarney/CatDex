@@ -1,15 +1,23 @@
 import { ADD_CAT } from '../types';
-import { DELETE_CAT } from '../types';
-import { EDIT_CAT } from '../types';
+import {  DELETE_CAT } from '../types';
 
-let nextCatId = 0;
 
 export const addCat = content => (
   {
     type: ADD_CAT,
     payload: {
-      id: ++nextCatId,
+      //mock unique id - would need better one for production
+      id: '_' + Math.random().toString(36).substr(2, 9),
       content
+    },
+  }
+);
+
+export const deleteCat = id => (
+  {
+    type: DELETE_CAT,
+    payload: {
+      id
     },
   }
 );

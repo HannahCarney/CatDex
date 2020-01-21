@@ -1,7 +1,5 @@
 import React from 'react';
 import { Input } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Field } from 'redux-form'
 import { View } from 'react-native'
 
 
