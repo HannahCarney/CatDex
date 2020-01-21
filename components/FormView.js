@@ -3,22 +3,20 @@ import { Field, reduxForm } from 'redux-form'
 import FormItem from './FormItem'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import globalstyles from '../globalStyleSheet'
-
-
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { InitialState } from '../redux/catJson.js';
 
 class FormView extends React.Component {
 
     constructor(props) {
         super(props);
-        //TODO get this from mockDB dynamically
-        this.state = { fieldTypes: ['name', 'breed'], error: {} };
+        this.state = { error: {} };
     }
 
     checkFormIsValid = (values) => {
         // Check form item is valid
         let tempErrState = {};
-        this.state.fieldTypes.forEach(item => {
+         InitialState.fieldTypes.forEach(item => {
             let value = values[item];
             if (!value || value.length === 0) {
                 tempErrState[item] = true
@@ -74,12 +72,13 @@ class FormView extends React.Component {
     //This was done in case I wanted to quickly add more cat-egories 
     renderDynamicFields() {
         let items = [];
-        this.state.fieldTypes.forEach(e => {
+        InitialState.fieldTypes.forEach(e => {
             items.push(<Field
                 key={e}
                 name={e}
                 error={this.state.error[e]}
                 component={FormItem}
+                fieldTypes={InitialState.fieldTypes}
             />)
         });
         return items;

@@ -3,8 +3,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Alert, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import globalstyles from '../globalStyleSheet'
-
+import globalstyles from '../globalStyleSheet';
+import { InitialState } from '../redux/catJson.js';
 
 export default class FormItem extends React.Component {
 
@@ -31,28 +31,33 @@ export default class FormItem extends React.Component {
         );
     }
 
+    //This was done in case I wanted to quickly add more cat-egories 
+    renderDynamicFields(values) {
+        let items = [];
+        InitialState.fieldTypes.forEach(e => {
+            items.push(
+                <View key={e} style={globalstyles.row}>
+                    <FontAwesome5 style={styles.padding} name="paw" />
+                    <Text style={styles.padding} >{e.toUpperCase()}:</Text>
+                    <Text style={[styles.title, globalstyles.text]}>{values[e]}</Text>
+                </View>)
+        });
+        return items;
+    }
+
     render() {
         const values = this.props.values;
         return (
             <View style={globalstyles.cardview}>
                 <View style={styles.mainRow}>
                     <View style={globalstyles.column}>
-                        <View style={globalstyles.row}>
-                            <FontAwesome5 style={styles.padding} name="cat" />
-                            <Text style={styles.padding} >Name:</Text>
-                            <Text style={[styles.title, globalstyles.text]}>{values.name}</Text>
-                        </View>
-                        <View style={globalstyles.row}>
-                            <FontAwesome5 style={styles.padding} name="paw" />
-                            <Text style={styles.padding} >Breed:</Text>
-                            <Text style={[styles.title, globalstyles.text]}>{values.breed}</Text>
-                        </View>
+                        {this.renderDynamicFields(values)}
+                        <Icon
+                            name='trash'
+                            type='font-awesome'
+                            style={styles.column}
+                            onPress={() => { this.alert(values) }} />
                     </View>
-                    <Icon
-                        name='trash'
-                        type='font-awesome'
-                        style={styles.column}
-                        onPress={() => {  this.alert(values) }} />
                 </View>
                 <Image
                     style={styles.image}
@@ -65,7 +70,7 @@ export default class FormItem extends React.Component {
 };
 
 const styles = StyleSheet.create({
-  
+
     padding: {
         paddingRight: 3
     },
@@ -77,7 +82,7 @@ const styles = StyleSheet.create({
         height: 300,
         borderColor: 'gray',
         borderRadius: 5,
-        borderWidth:1
+        borderWidth: 1
     },
     mainRow: {
         flexDirection: 'row',
