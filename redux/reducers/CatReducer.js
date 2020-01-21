@@ -51,7 +51,8 @@ const catReducer = (state = INITIAL_STATE, action) => {
           console.log(current);
         }
       }
-      return current;
+      const newDelState = { current };
+      return newDelState;
     default:
       return state;
   }
