@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 export default class FormItem extends React.Component {
@@ -33,9 +33,13 @@ export default class FormItem extends React.Component {
             <View style={styles.item}>
                 <Text style={styles.title}>{values.name}</Text>
                 <Text style={styles.title}>{values.breed}</Text>
+                <Image
+                    style={{ width: "100%", height: 300 }}
+                    source={{ uri: values.uri }}
+                />
                 <Icon name='highlight-off'
                     style={styles.closeButton}
-                    onPress={() =>  { this.alert(values) }} />
+                    onPress={() => { this.alert(values) }} />
             </View>
         );
     };
