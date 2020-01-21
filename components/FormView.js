@@ -55,6 +55,7 @@ class FormView extends React.Component {
         let items = [];
         this.state.fieldTypes.forEach(e => {
             items.push(<Field
+                key={e}
                 name={e}
                 error={this.state.error[e]}
                 component={FormItem}
@@ -66,7 +67,6 @@ class FormView extends React.Component {
     render() {
         const { handleSubmit } = this.props
 
-        //Refactor using a Form element?
         return (
             <View >
                 {this.renderDynamicFields()}

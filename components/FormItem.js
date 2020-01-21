@@ -24,7 +24,7 @@ export default class FormItem extends React.Component {
                     placeholder={`Enter cat ${name}`}
                     onChangeText={v => onChange(v)}
                     errorStyle={{ color: 'red' }}
-                    errorMessage={this.props.error === true ? `Enter a Valid ${name}` : ""}
+                    errorMessage={this.props.error === true ? `Enter a valid ${name}` : ""}
                 />
             </View>
 

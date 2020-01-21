@@ -6,7 +6,10 @@ import AddCats from './views/AddCats';
 const MainNavigator = createStackNavigator({
   Home: {screen: Home},
   AddCats: {screen: AddCats},
-});
+ },{
+    mode: 'modal'
+  }
+);
 
 const App = createAppContainer(MainNavigator);
 

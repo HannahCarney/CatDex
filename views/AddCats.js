@@ -11,11 +11,10 @@ class AddCats extends React.Component {
     super(props);
   }
   static navigationOptions = {
-    title: 'Home',
+    title: 'Add a Cat',
   };
 
   addCat = (values) => {
-    console.log("values are " + values.name);
     this.props.addCat(values);
   };
 

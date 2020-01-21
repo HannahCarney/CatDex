@@ -1,15 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, View, Text, FlatList, StyleSheet, SafeAreaView } from 'react-native';
+import { Icon } from 'native-base';
+import CatListItem from '../components/CatListItem'
 
-function Item({ values, index }) {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{values.name}</Text>
-      <Text style={styles.title}>{values.breed}</Text>
-    </View>
-  );
-}
+//move into component
+
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -23,14 +19,14 @@ class Home extends React.Component {
 
         <FlatList
           data={this.props.cats.current}
-          renderItem={({ item, index }) => <Item index={index} values={item} />}
+          renderItem={({ item, index }) => <CatListItem index={index} values={item}></CatListItem>}
           keyExtractor={(item, index) => {
             return index.toString();
           }}
         />
 
         <Button
-          title="Go to Cats"
+          title="Add Cat"
           onPress={() => navigate('AddCats')}
         />
       </SafeAreaView>
@@ -42,16 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 5,
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
+  }
 });
 
 const mapStateToProps = (state) => {
