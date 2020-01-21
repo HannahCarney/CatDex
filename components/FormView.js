@@ -4,7 +4,6 @@ import FormItem from './FormItem'
 import {
     StyleSheet,
     Text,
-    TextInput,
     TouchableOpacity,
     View
 } from 'react-native'
@@ -13,22 +12,65 @@ class FormView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { error: false };
+        //TODO get this from mockDB dynamically
+        this.state = { fieldTypes: ['name', 'breed'], error: {} };
+    }
+
+    checkFormIsValid = (values) => {
+        // Check form item is valid
+        let tempErrState = {};
+        this.state.fieldTypes.forEach(item => {
+            let value = values[item];
+            if (!value || value.length === 0) {
+                tempErrState[item] = true
+            }
+            else {
+                tempErrState[item] = false
+            }
+        });
+        //triggers UI update
+        this.setState({
+            error: tempErrState
+        });
+        this.checkIfCanSubmitForm(tempErrState, values);
+    };
+
+    checkIfCanSubmitForm(tempErrState, values) {
+        //check if any errors
+        let hasError = false;
+        for (var key in tempErrState) {
+            if (tempErrState[key] === true) {
+                hasError = true;
+                break;
+            }
+        };
+
+        //no errors we can submit redux form
+        if (!hasError) {
+            this.props.onSubmitCallback(values);
+        }
+    }
+
+    renderDynamicFields() {
+        let items = [];
+        this.state.fieldTypes.forEach(e => {
+            items.push(<Field
+                name={e}
+                error={this.state.error[e]}
+                component={FormItem}
+            />)
+        });
+        return items;
     }
 
     render() {
-        const { handleSubmit, onSubmitCallback } = this.props
+        const { handleSubmit } = this.props
 
         //Refactor using a Form element?
         return (
             <View >
-                <Field
-                    name='name'
-                    component={FormItem} />
-                 <Field
-                    name='breed'
-                    component={FormItem} />
-                <TouchableOpacity onPress={handleSubmit(onSubmitCallback)}>
+                {this.renderDynamicFields()}
+                <TouchableOpacity onPress={handleSubmit(this.checkFormIsValid)}>
                     <Text style={styles.button}>Submit</Text>
                 </TouchableOpacity>
             </View>
