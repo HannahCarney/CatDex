@@ -36,7 +36,7 @@ class FormView extends React.Component {
         this.checkIfCanSubmitForm(tempErrState, values);
     };
 
-
+    //TODO move this into API folder
     generateCatPicture(values) {
         return fetch('https://api.thecatapi.com/v1/images/search?limit=1?')
             .then((response) => response.json())
@@ -45,6 +45,10 @@ class FormView extends React.Component {
                     //successfully gotten a cat pic we can now trigger callback
                     values.uri = responseJson[0].url
                     this.props.onSubmitCallback(values);
+                }
+                else {
+                   //TODO add error message here so user can retrigger
+                    console.error(error);
                 }
             })
             .catch((error) => {
@@ -109,9 +113,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         textAlign: 'center',
         width: 250
-    },
-    container: {
-
     },
     input: {
         borderColor: 'black',

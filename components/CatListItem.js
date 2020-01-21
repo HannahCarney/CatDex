@@ -2,6 +2,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, Alert, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 
 export default class FormItem extends React.Component {
 
@@ -32,16 +34,22 @@ export default class FormItem extends React.Component {
         const values = this.props.values;
         return (
             <View style={styles.container}>
-                <View style={styles.row}>
+                <View style={styles.mainRow}>
                     <View style={styles.column}>
-                        <Text>Name:</Text>
-                        <Text style={styles.title}>{values.name}</Text>
-                        <Text>Breed:</Text>
-                        <Text style={styles.title}>{values.breed}</Text>
+                        <View style={styles.row}>
+                            <FontAwesome5 style={styles.padding} name="cat" />
+                            <Text style={styles.padding} >Name:</Text>
+                            <Text style={styles.title}>{values.name}</Text>
+                        </View>
+                        <View style={styles.row}>
+                            <FontAwesome5 style={styles.padding} name="paw" />
+                            <Text style={styles.padding} >Breed:</Text>
+                            <Text style={styles.title}>{values.breed}</Text>
+                        </View>
                     </View>
-                    <Icon name='trash'
+                    <Icon
+                        name='trash'
                         type='font-awesome'
-                        size={40}
                         style={styles.column}
                         onPress={() => { this.alert(values) }} />
                 </View>
@@ -56,27 +64,45 @@ export default class FormItem extends React.Component {
 };
 
 const styles = StyleSheet.create({
-    image: {
-        width: "100%", height: 300
-    },
     container: {
-        backgroundColor: '#f9c2ff',
+        backgroundColor: 'white',
+        borderColor: '#000000',
+        borderRadius: 8,
+        borderWidth: 1,
+        fontFamily: '',
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,
+        shadowColor: '#000',
+        shadowOffset: { width: 4, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 2,
+    },
+    padding: {
+        paddingRight: 3
     },
     title: {
-        fontSize: 32,
+        fontSize: 20,
+    },
+    image: {
+        width: "100%",
+        height: 300
     },
     column: {
         display: 'flex',
         flexDirection: 'column',
-        flex: 1
+        flex: 1,
     },
     row: {
+        alignItems: 'center',
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
+        paddingBottom: '2%',
+    },
+    mainRow: {
+        flexDirection: 'row',
+        alignItems: 'flex-start'
     },
     closeButton: {
         position: 'relative',
