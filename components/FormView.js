@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import FormItem from './FormItem'
+
 import {
     StyleSheet,
     Text,
@@ -35,6 +36,23 @@ class FormView extends React.Component {
         this.checkIfCanSubmitForm(tempErrState, values);
     };
 
+
+    generateCatPicture(values) {
+        return fetch('https://api.thecatapi.com/v1/images/search?limit=1?')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                if (responseJson[0]) {
+                    //successfully gotten a cat pic we can now trigger callback
+                    values.uri = responseJson[0].url
+                    this.props.onSubmitCallback(values);
+                }
+            })
+            .catch((error) => {
+                //TODO add error message here so user can retrigger
+                console.error(error);
+            });
+    }
+
     checkIfCanSubmitForm(tempErrState, values) {
         //check if any errors
         let hasError = false;
@@ -47,7 +65,7 @@ class FormView extends React.Component {
 
         //no errors we can submit redux form
         if (!hasError) {
-            this.props.onSubmitCallback(values);
+            this.generateCatPicture(values);
         }
     }
 
