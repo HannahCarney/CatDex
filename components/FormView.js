@@ -1,13 +1,11 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import FormItem from './FormItem'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import globalstyles from '../globalStyleSheet'
 
-import {
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
-} from 'react-native'
+
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 class FormView extends React.Component {
 
@@ -47,7 +45,7 @@ class FormView extends React.Component {
                     this.props.onSubmitCallback(values);
                 }
                 else {
-                   //TODO add error message here so user can retrigger
+                    //TODO add error message here so user can retrigger
                     console.error(error);
                 }
             })
@@ -67,12 +65,13 @@ class FormView extends React.Component {
             }
         };
 
-        //no errors we can submit redux form
+        //no errors we can submit redux form - yay!
         if (!hasError) {
             this.generateCatPicture(values);
         }
     }
 
+    //This was done in case I wanted to quickly add more cat-egories 
     renderDynamicFields() {
         let items = [];
         this.state.fieldTypes.forEach(e => {
@@ -88,13 +87,16 @@ class FormView extends React.Component {
 
     render() {
         const { handleSubmit } = this.props
-
+        //TODO can this be a button?
         return (
-            <View >
+            <View style={[globalstyles.cardview, styles.cardview]}>
                 {this.renderDynamicFields()}
-                <TouchableOpacity onPress={handleSubmit(this.checkFormIsValid)}>
-                    <Text style={styles.button}>Submit</Text>
-                </TouchableOpacity>
+                <View style={styles.buttoncontainer}>
+                    <TouchableOpacity style={[globalstyles.row, globalstyles.button]} onPress={handleSubmit(this.checkFormIsValid)}>
+                        <Text style={styles.text}>Submit</Text>
+                        <FontAwesome5 style={styles.icon} name="cat" />
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
@@ -105,14 +107,21 @@ export default reduxForm({
 })(FormView)
 
 const styles = StyleSheet.create({
-    button: {
-        backgroundColor: 'blue',
-        color: 'white',
-        height: 30,
-        lineHeight: 30,
-        marginTop: 10,
-        textAlign: 'center',
-        width: 250
+    cardview: {
+        height: '50%',
+    },
+    icon: {
+        paddingLeft: 5,
+        fontSize: 20
+    },
+    buttoncontainer: {
+        flex:1,
+        justifyContent:"flex-end"
+    },
+    text: {
+        color: 'black',
+        height: '100%',
+        fontSize: 24
     },
     input: {
         borderColor: 'black',

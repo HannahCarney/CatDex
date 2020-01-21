@@ -6,7 +6,6 @@ import { deleteCat } from '../redux/actions/CatActions'
 import { Icon } from 'react-native-elements'
 import EmptyState from '../components/EmptyState'
 
-
 class Home extends React.Component {
 
   constructor(props) {

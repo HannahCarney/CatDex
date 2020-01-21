@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Alert, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import globalstyles from '../globalStyleSheet'
 
 
 export default class FormItem extends React.Component {
@@ -33,7 +34,7 @@ export default class FormItem extends React.Component {
     render() {
         const values = this.props.values;
         return (
-            <View style={styles.container}>
+            <View style={globalstyles.cardview}>
                 <View style={styles.mainRow}>
                     <View style={styles.column}>
                         <View style={styles.row}>
@@ -65,20 +66,7 @@ export default class FormItem extends React.Component {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'white',
-        borderColor: '#000000',
-        borderRadius: 8,
-        borderWidth: 1,
-        fontFamily: '',
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 4, height: 4 },
-        shadowOpacity: 0.4,
-        shadowRadius: 2,
-    },
+  
     padding: {
         paddingRight: 3
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from 'react-native-elements';
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 
 export default class FormItem extends React.Component {
@@ -15,7 +15,7 @@ export default class FormItem extends React.Component {
           } = this.props
 
         return (
-            <View>
+            <View style={styles.padding}>
                 <Input
                     {...this.props}
                     label={name.toUpperCase()}
@@ -29,6 +29,12 @@ export default class FormItem extends React.Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+   padding: {
+       paddingTop: 10
+   }
+})
 
 
 
