@@ -23,9 +23,7 @@ class Home extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-
       <SafeAreaView style={styles.container}>
-
         <FlatList
           data={this.props.cats.current}
           renderItem={({ item, index }) => <CatListItem index={index} values={item} delete={id => this.deleteCat(id)}></CatListItem>}
@@ -33,17 +31,16 @@ class Home extends React.Component {
             return index.toString();
           }}
         />
-    <View style={styles.buttonContainer}>
-     <Icon
-         raised
-         reverse
-          style={styles.button}
-          color='#0EBFE9'
-          name='add'
-          size={40}
-          onPress={() => navigate('AddCats')}
-        />
-      </View>
+        <View style={styles.buttonContainer}>
+          <Icon
+            raised
+            reverse
+            color='#147efb'
+            name='add'
+            size={40}
+            onPress={() => navigate('AddCats')}
+          />
+        </View>
       </SafeAreaView>
     );
   }
@@ -55,9 +52,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   buttonContainer: {
-  position: "absolute",
-  right: "5%",
-  bottom: "8%"
+    position: "absolute",
+    right: "5%",
+    bottom: "8%"
 
   }
 });

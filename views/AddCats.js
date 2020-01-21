@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { addCat } from '../redux/actions/CatActions';
 
@@ -10,9 +10,22 @@ class AddCats extends React.Component {
   constructor(props) {
     super(props);
   }
-  static navigationOptions = {
-    title: 'Add a Cat',
+
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: "Add a cat",
+      headerLeft: () => null,
+      headerRight: () => (
+        <Button
+          title="Cancel"
+          color="#147efb"
+          onPress={() => navigation.goBack()}
+        />
+      ),
+    }
   };
+
 
   addCat = (values) => {
     this.props.addCat(values);
@@ -21,7 +34,7 @@ class AddCats extends React.Component {
   render() {
     return (
       <View>
-        <FormView onSubmitCallback={ values => this.addCat(values)}></FormView>
+        <FormView onSubmitCallback={values => this.addCat(values)}></FormView>
       </View>
     );
   }
