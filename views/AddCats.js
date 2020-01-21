@@ -25,7 +25,10 @@ class AddCats extends React.Component {
   };
 
   addCat = (values) => {
+    //add cat
     this.props.addCat(values);
+    //navigate back
+    this.props.navigation.goBack();
   };
 
   render() {

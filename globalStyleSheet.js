@@ -29,6 +29,10 @@ export default globalstyles = StyleSheet.create({
         alignItems: 'center',
         width: '100%'
     },
+    text: {
+        color: '#808080',
+        fontFamily: 'AmericanTypewriter'
+    },
     column: {
         display: 'flex',
         flexDirection: 'column',

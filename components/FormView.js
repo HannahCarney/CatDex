@@ -93,7 +93,7 @@ class FormView extends React.Component {
                 {this.renderDynamicFields()}
                 <View style={styles.buttoncontainer}>
                     <TouchableOpacity style={[globalstyles.row, globalstyles.button]} onPress={handleSubmit(this.checkFormIsValid)}>
-                        <Text style={styles.text}>Submit</Text>
+                        <Text style={[globalstyles.text, styles.text]}>Submit</Text>
                         <FontAwesome5 style={styles.icon} name="cat" />
                     </TouchableOpacity>
                 </View>
@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
         justifyContent:"flex-end"
     },
     text: {
-        color: 'black',
         height: '100%',
         fontSize: 24
     },

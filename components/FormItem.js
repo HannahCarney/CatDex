@@ -11,7 +11,7 @@ export default class FormItem extends React.Component {
 
     render() {
         const {
-            input: { value, onChange, name}
+            input: { onChange, name}
           } = this.props
 
         return (
