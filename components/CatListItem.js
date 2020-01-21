@@ -7,6 +7,7 @@ import { Icon } from 'native-base';
 export default class FormItem extends React.Component {
 
     alert = (values) => {
+        console.log(values);
         Alert.alert(
             `Delete ${values.name}`,
             `Are you sure?`,
@@ -18,7 +19,7 @@ export default class FormItem extends React.Component {
                 },
                 {
                     text: 'OK', onPress: () => {
-                        var id = this.props.values.id
+                        var id = values.id;
                         this.props.delete(id)
                     }
                 },
@@ -35,8 +36,7 @@ export default class FormItem extends React.Component {
                 <Text style={styles.title}>{values.breed}</Text>
                 <Icon name='md-close-circle-outline'
                     style={styles.closeButton}
-                    onPress={() =>  { var id = this.props.values.id;
-                        this.props.delete(id) }} />
+                    onPress={() =>  { this.alert(values) }} />
             </View>
         );
     };
