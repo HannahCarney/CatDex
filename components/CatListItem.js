@@ -51,7 +51,8 @@ export default class FormItem extends React.Component {
                         name='trash'
                         type='font-awesome'
                         style={styles.column}
-                        onPress={() => { this.alert(values) }} />
+                        onPress={() => {  var id = values.id;
+                            this.props.delete(id) }} />
                 </View>
                 <Image
                     style={styles.image}

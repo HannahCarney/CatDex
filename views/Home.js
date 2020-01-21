@@ -4,6 +4,7 @@ import { FlatList, StyleSheet, SafeAreaView, View, ImageBackground } from 'react
 import CatListItem from '../components/CatListItem'
 import { deleteCat } from '../redux/actions/CatActions'
 import { Icon } from 'react-native-elements'
+import EmptyState from '../components/EmptyState'
 
 
 class Home extends React.Component {
@@ -20,28 +21,38 @@ class Home extends React.Component {
     this.props.deleteCat(id);
   };
 
+  renderList() {
+    let list = this.props.cats.current;
+    if (list.length > 0) {
+      return <FlatList
+        data={list}
+        renderItem={({ item, index }) => <CatListItem index={index} values={item} delete={id => this.deleteCat(id)}></CatListItem>}
+        keyExtractor={(item, index) => {
+          return index.toString();
+        }}
+      />
+    }
+    else {
+      return <EmptyState/>
+    }
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
       <SafeAreaView style={styles.container}>
-        <ImageBackground source={require('../assets/cat-background.jpg')} style={{width: '100%', height: '100%'}}>
-        <FlatList
-          data={this.props.cats.current}
-          renderItem={({ item, index }) => <CatListItem index={index} values={item} delete={id => this.deleteCat(id)}></CatListItem>}
-          keyExtractor={(item, index) => {
-            return index.toString();
-          }}
-        />
-        <View style={styles.buttonContainer}>
-          <Icon
-            raised
-            reverse
-            color='#147efb'
-            name='add'
-            size={32}
-            onPress={() => navigate('AddCats')}
-          />
-        </View>
+        <ImageBackground source={require('../assets/cat-background.jpg')} style={{ width: '100%', height: '100%' }}>
+          {this.renderList()}
+          <View style={styles.buttonContainer}>
+            <Icon
+              raised
+              reverse
+              color='#147efb'
+              name='add'
+              size={32}
+              onPress={() => navigate('AddCats')}
+            />
+          </View>
         </ImageBackground>
       </SafeAreaView>
     );
