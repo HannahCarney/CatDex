@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, FlatList, StyleSheet, SafeAreaView } from 'react-native';
+import { FlatList, StyleSheet, SafeAreaView, View } from 'react-native';
 import CatListItem from '../components/CatListItem'
 import { deleteCat } from '../redux/actions/CatActions'
+import { Icon } from 'react-native-elements'
 
 
 class Home extends React.Component {
@@ -12,7 +13,7 @@ class Home extends React.Component {
   }
 
   static navigationOptions = {
-    title: 'Home',
+    title: 'My Cats',
   };
 
   deleteCat = (id) => {
@@ -32,11 +33,17 @@ class Home extends React.Component {
             return index.toString();
           }}
         />
-
-        <Button
-          title="Add Cat"
+    <View style={styles.buttonContainer}>
+     <Icon
+         raised
+         reverse
+          style={styles.button}
+          color='#0EBFE9'
+          name='add'
+          size={40}
           onPress={() => navigate('AddCats')}
         />
+      </View>
       </SafeAreaView>
     );
   }
@@ -46,6 +53,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 5,
+  },
+  buttonContainer: {
+  position: "absolute",
+  right: "5%",
+  bottom: "8%"
+
   }
 });
 

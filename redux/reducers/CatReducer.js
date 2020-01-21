@@ -1,5 +1,3 @@
-
-
 import { ADD_CAT, DELETE_CAT } from '../types';
 
 // put this in a MOCKDB
@@ -42,13 +40,9 @@ const catReducer = (state = INITIAL_STATE, action) => {
       return newState;
     case DELETE_CAT:
       var { id } = action.payload;
-      console.log(id);
       for (index in current) {
         if (current[index].id == id) {
-          console.log(current[index])
-
           current.splice(index, 1);
-          console.log(current);
         }
       }
       const newDelState = { current };
