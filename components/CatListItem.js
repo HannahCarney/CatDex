@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements';
 
 export default class FormItem extends React.Component {
 
+    //Alert for deleting cat
     alert = (values) => {
         console.log(values);
         Alert.alert(
@@ -30,27 +31,35 @@ export default class FormItem extends React.Component {
     render() {
         const values = this.props.values;
         return (
-            <View style={styles.item}>
-                <Text style={styles.title}>{values.name}</Text>
-                <Text style={styles.title}>{values.breed}</Text>
+            <View style={styles.container}>
+                <View style={styles.row}>
+                    <View style={styles.column}>
+                        <Text>Name:</Text>
+                        <Text style={styles.title}>{values.name}</Text>
+                        <Text>Breed:</Text>
+                        <Text style={styles.title}>{values.breed}</Text>
+                    </View>
+                    <Icon name='trash'
+                        type='font-awesome'
+                        size={40}
+                        style={styles.column}
+                        onPress={() => { this.alert(values) }} />
+                </View>
                 <Image
-                    style={{ width: "100%", height: 300 }}
+                    style={styles.image}
                     source={{ uri: values.uri }}
                 />
-                <Icon name='highlight-off'
-                    style={styles.closeButton}
-                    onPress={() => { this.alert(values) }} />
+
             </View>
         );
     };
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 5,
+    image: {
+        width: "100%", height: 300
     },
-    item: {
+    container: {
         backgroundColor: '#f9c2ff',
         padding: 20,
         marginVertical: 8,
@@ -59,11 +68,20 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 32,
     },
+    column: {
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1
+    },
+    row: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
     closeButton: {
-        position: 'absolute',
+        position: 'relative',
         right: 0,
-        top: 0,
-        bottom: 0
+        top: 0
     }
 });
 
