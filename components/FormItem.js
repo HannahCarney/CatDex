@@ -15,8 +15,9 @@ export default class FormItem extends React.Component {
           } = this.props
 
         return (
-            <View key={name} style={styles.padding}>
+            <View style={styles.padding}>
                 <Input
+                    multiline
                     {...this.props}
                     label={name.toUpperCase()}
                     placeholder={`Enter cat ${name}`}
