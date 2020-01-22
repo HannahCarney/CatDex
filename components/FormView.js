@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import FormItem from './FormItem'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import globalstyles from '../globalStyleSheet'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { InitialState } from '../redux/catJson.js';
 
 class FormView extends React.Component {
@@ -88,7 +88,7 @@ class FormView extends React.Component {
         const { handleSubmit } = this.props
         //TODO can this be a button?
         return (
-            <View style={[globalstyles.cardview, styles.cardview]}>
+            <ScrollView  contentContainerStyle={styles.scrollView} style={[globalstyles.cardview, styles.cardview]}>
                 {this.renderDynamicFields()}
                 <View style={styles.buttoncontainer}>
                     <TouchableOpacity style={[globalstyles.row, globalstyles.button]} onPress={handleSubmit(this.checkFormIsValid)}>
@@ -96,7 +96,7 @@ class FormView extends React.Component {
                         <FontAwesome5 style={styles.icon} name="cat" />
                     </TouchableOpacity>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
@@ -107,15 +107,23 @@ export default reduxForm({
 
 const styles = StyleSheet.create({
     cardview: {
-        height: '50%',
+        maxHeight: 400
+    },
+    scrollView: {
+        paddingBottom: 30,
+        flexGrow: 1, 
+        flexDirection: 'column', 
+        justifyContent: 'space-between',
     },
     icon: {
         paddingLeft: 5,
         fontSize: 20
     },
     buttoncontainer: {
-        flex:1,
-        justifyContent:"flex-end"
+        paddingTop: 10,
+        flexGrow:1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end'
     },
     text: {
         height: '100%',
