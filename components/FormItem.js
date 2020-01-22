@@ -15,7 +15,7 @@ export default class FormItem extends React.Component {
           } = this.props
 
         return (
-            <View style={styles.padding}>
+            <View key={name} style={styles.padding}>
                 <Input
                     {...this.props}
                     label={name.toUpperCase()}
