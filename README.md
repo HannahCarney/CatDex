@@ -52,6 +52,10 @@ npx react-native run-android
 
 I was tasked with designing this app myself, and gave myself three days for this project. Many UX problems occured when adding functionality for delete cat - namely needing an empty state for no cats as well as a confirmation message. Edit cats was a bigger problem - I designed an additional button on the Home page, which triggered the ability to edit the text, which turned the edit button into a tick mark for "saving." However, this opened up the UX design problem that more than one cat could be edited at a time. I spent a lot of time thinking through the problem, but it proved to be complex. A possible solution is to design a new page in which to display the cat info upon click, but I ultimetly ran out of time to design such a page. At a later date I hope to add that functionality, and am open to suggestions!
 
+## What I learnt
+
+Mostly that UX design is really hard! From a code perspective - I had a play with redux-form which I had never used before but have always wanted to try. It was fun to learn, but then I realised that the UX possibly didn't even need the cat form to persist through redux. Still working on my UX knowledge I suppose!
+
 ## Code - interesting bits
 
 I designed CatDex to be dynamic. In catJson.js I created the key:
