@@ -33,7 +33,7 @@ npm install
 Link vector icons
 
 ```
-react-native link
+npx react-native link
 ```
 
 To install on iOS
