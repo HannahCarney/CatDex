@@ -15,6 +15,9 @@ Jack owns so many cats that he can't keep track of all of them. He needs a way t
 - [x] Error messages within Add Cat Form
 - [ ] Can edit cat
 - [ ] Persist data on app close using redux persist
+- [ ] Empty cat pic placeholder when image is loading
+- [ ] App Icon
+
 
 [![Demo Catalpha](https://media.giphy.com/media/dWsN2abs3C5Un0bA4b/giphy.gif)](https://www.youtube.com/watch?v=pKzez4-whqY&feature=youtu.be)
 
