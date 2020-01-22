@@ -14,6 +14,7 @@ Jack owns so many cats that he can't keep track of all of them. He needs a way t
 - [x] Empty state for no cats
 - [x] Error messages within Add Cat Form
 - [ ] Can edit cat
+- [ ] Redux to save cat form
 - [ ] Persist data using redux persist
 
 [![Demo Catalpha](https://media.giphy.com/media/dWsN2abs3C5Un0bA4b/giphy.gif)](https://www.youtube.com/watch?v=pKzez4-whqY&feature=youtu.be)
