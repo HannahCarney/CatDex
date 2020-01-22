@@ -16,6 +16,9 @@ Jack owns so many cats that he can't keep track of all of them. He needs a way t
 - [ ] Can edit cat
 - [ ] Persist data using redux persist
 
+[![Demo Catalpha](https://media.giphy.com/media/dWsN2abs3C5Un0bA4b/giphy.gif)](https://www.youtube.com/watch?v=pKzez4-whqY&feature=youtu.be)
+
+
 ## Installation
 
 CatDex is written in React Native, utlizing redux for state management.
