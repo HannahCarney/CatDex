@@ -5,7 +5,7 @@ export const InitialState = {
       {
         'name': 'Goose',
         'breed': 'Flerken',
-        'description': 'Goose looks like the domesticated cats that live on Earth but have tentacles that come out of their mouths and can swallow up large objects and store them in bubbles in their bellies.',
+        'description': 'Goose looks like the domesticated cats that live on Earth, but have tentacles that come out of their mouths and can swallow up large objects and store them in bubbles in their bellies.',
         'uri': 'https://www.thewrap.com/wp-content/uploads/2019/03/Goose-the-Cat-Captain-Marvel.jpg',
         'id': 9192101
       },

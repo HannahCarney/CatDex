@@ -36,7 +36,7 @@ export default class FormItem extends React.Component {
         let items = [];
         InitialState.fieldTypes.forEach(e => {
             items.push(
-                <View key={e} style={styles.row}>
+                <View key={e} style={[globalstyles.row, styles.paddingBottom]}>
                     <FontAwesome5 style={styles.padding} name="paw" />
                     <Text style={styles.padding} >{e.toUpperCase()}:</Text>
                     <Text style={[styles.title, globalstyles.text]}>{values[e]}</Text>
@@ -50,14 +50,22 @@ export default class FormItem extends React.Component {
         return (
             <View style={globalstyles.cardview}>
                 <View style={styles.mainRow}>
-                    <View style={styles.column}>
+                    <View style={globalstyles.column}>
                         {this.renderDynamicFields(values)}
                     </View>
+                    <View style={globalstyles.column}>
+
+                    <Icon
+                            name='edit'
+                            type='font-awesome'
+                            style={styles.margin}
+                            onPress={() => { this.alert(values) }} />
                     <Icon
                             name='trash'
                             type='font-awesome'
                             style={styles.column}
                             onPress={() => { this.alert(values) }} />
+                 </View>
                 </View>
                 <Image
                     style={styles.image}
@@ -72,22 +80,17 @@ export default class FormItem extends React.Component {
 const styles = StyleSheet.create({
 
     padding: {
-        paddingRight: 3
+        paddingRight: 5
+    },
+    paddingBottom: {
+        paddingBottom: 5
+    },
+    margin: {
+        color: 'red',
+        marginHorizontal: 20
     },
     title: {
         fontSize: 20,
-    },
-       column: {
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-    },
-    row: {
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        paddingBottom: '2%',
     },
     image: {
         width: "100%",
