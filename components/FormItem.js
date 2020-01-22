@@ -2,7 +2,6 @@ import React from 'react';
 import { Input } from 'react-native-elements';
 import { View, StyleSheet } from 'react-native'
 
-
 export default class FormItem extends React.Component {
 
     constructor(props) {

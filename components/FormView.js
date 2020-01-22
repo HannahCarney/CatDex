@@ -6,17 +6,18 @@ import globalstyles from '../globalStyleSheet'
 import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { InitialState } from '../redux/catJson.js';
 
+//TODO there is too much in this file, strip it out
 class FormView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { error: {} };
+        this.state = { error: {}, disabled: false };
     }
 
     checkFormIsValid = (values) => {
         // Check form item is valid
         let tempErrState = {};
-         InitialState.fieldTypes.forEach(item => {
+        InitialState.fieldTypes.forEach(item => {
             let value = values[item];
             if (!value || value.length === 0) {
                 tempErrState[item] = true
@@ -32,7 +33,8 @@ class FormView extends React.Component {
         this.checkIfCanSubmitForm(tempErrState, values);
     };
 
-    //TODO move this into API folder
+    //TODO move this into an API folder
+    //TODO add spinner
     generateCatPicture(values) {
         return fetch('https://api.thecatapi.com/v1/images/search?limit=1?')
             .then((response) => response.json())
@@ -65,6 +67,10 @@ class FormView extends React.Component {
 
         //no errors we can submit redux form - yay!
         if (!hasError) {
+            //we should disable button so user can't submit cat twice
+            this.setState({
+                disabled: true
+            });
             this.generateCatPicture(values);
         }
     }
@@ -86,12 +92,11 @@ class FormView extends React.Component {
 
     render() {
         const { handleSubmit } = this.props
-        //TODO can this be a button?
         return (
-            <ScrollView  contentContainerStyle={styles.scrollView} style={[globalstyles.cardview, styles.cardview]}>
+            <ScrollView contentContainerStyle={styles.scrollView} style={[globalstyles.cardview, styles.cardview]}>
                 {this.renderDynamicFields()}
                 <View style={styles.buttoncontainer}>
-                    <TouchableOpacity style={[globalstyles.row, globalstyles.button]} onPress={handleSubmit(this.checkFormIsValid)}>
+                    <TouchableOpacity style={[globalstyles.row, globalstyles.button]} onPress={handleSubmit(this.checkFormIsValid)} disabled={this.state.disabled}>
                         <Text style={[globalstyles.text, styles.text]}>Submit</Text>
                         <FontAwesome5 style={styles.icon} name="cat" />
                     </TouchableOpacity>
@@ -100,9 +105,10 @@ class FormView extends React.Component {
         )
     }
 }
-
+// This was me learning how to use redux form, which I never used before
+// add a name to redux form to fetch data later if I decide to use
 export default reduxForm({
-    form: 'catForm' //add a name to redux form to fetch data later if needed
+    form: 'catForm'
 })(FormView)
 
 const styles = StyleSheet.create({
@@ -111,8 +117,8 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         paddingBottom: 30,
-        flexGrow: 1, 
-        flexDirection: 'column', 
+        flexGrow: 1,
+        flexDirection: 'column',
         justifyContent: 'space-between',
     },
     icon: {
@@ -121,7 +127,7 @@ const styles = StyleSheet.create({
     },
     buttoncontainer: {
         paddingTop: 10,
-        flexGrow:1,
+        flexGrow: 1,
         flexDirection: 'column',
         justifyContent: 'flex-end'
     },

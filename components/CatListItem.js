@@ -36,7 +36,7 @@ export default class FormItem extends React.Component {
         let items = [];
         InitialState.fieldTypes.forEach(e => {
             items.push(
-                <View key={e} style={styles.row}>
+                <View key={e} style={globalstyles.row}>
                     <FontAwesome5 style={styles.padding} name="paw" />
                     <Text style={styles.padding} >{e.toUpperCase()}:</Text>
                     <Text style={[styles.title, globalstyles.text]}>{values[e]}</Text>
@@ -50,13 +50,13 @@ export default class FormItem extends React.Component {
         return (
             <View style={globalstyles.cardview}>
                 <View style={styles.mainRow}>
-                    <View style={styles.column}>
+                    <View style={globalstyles.column}>
                         {this.renderDynamicFields(values)}
                     </View>
                     <Icon
                             name='trash'
                             type='font-awesome'
-                            style={styles.column}
+                            style={globalstyles.column}
                             onPress={() => { this.alert(values) }} />
                 </View>
                 <Image
@@ -76,18 +76,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-    },
-       column: {
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-    },
-    row: {
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        paddingBottom: '2%',
     },
     image: {
         width: "100%",

@@ -1,6 +1,4 @@
-import { ADD_CAT } from '../types';
-import {  DELETE_CAT } from '../types';
-
+import { ADD_CAT, DELETE_CAT } from '../types';
 
 export const addCat = content => (
   {
