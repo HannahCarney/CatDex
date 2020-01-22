@@ -19,7 +19,8 @@ class FormView extends React.Component {
         let tempErrState = {};
         InitialState.fieldTypes.forEach(item => {
             let value = values[item];
-            if (!value || value.length === 0) {
+            //string only contains whitespace (ie. spaces, tabs or line breaks)
+            if (!value || value.length === 0 || !value.replace(/\s/g, '').length) {
                 tempErrState[item] = true
             }
             else {
