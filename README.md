@@ -26,7 +26,7 @@ CatDex is written in React Native, utlizing redux for state management.
 
 Install node modules
 
-```ruby
+```
 npm install
 ```
 
@@ -38,13 +38,13 @@ npx react-native link
 
 To install on iOS
 
-```ruby
+```
 npx react-native run-ios
 ```
 
 To install on Android 
 
-```ruby
+```
 npx react-native run-android 
 ```
 
